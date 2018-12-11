@@ -1,0 +1,80 @@
+@(style: String = "scala")
+
+    @defining(play.core.PlayVersion.current) { version =>
+
+        <section id="top">
+            <div class="wrapper">
+                <h1>Zarinpal Payment For Play Framework/Scala</h1>
+            </div>
+        </section>
+
+        <div id="content" class="wrapper doc">
+            <article>
+                <p>
+                    Click the following <a href="@routes.HomeController.payment">link to pay</a>
+                </p>
+
+                <blockquote>
+                    <p>
+                        You’re using Play @version
+                    </p>
+                </blockquote>
+                <p>
+                    Set <b>SBT</b> version in <b>/project/build.properties</b>
+                </p>
+
+                <blockquote>
+                    <p>
+                        sbt.version=1.2.7
+                    </p>
+                </blockquote>
+
+                <p>
+                    Add the following lines to <b>/project/plugins.sbt</b>
+                </p>
+                <pre>
+                    <code>
+// sbt-play-soap
+resolvers += Resolver.url("play-sbt-plugins",
+                        url("https://dl.bintray.com/playframework/
+                        sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
+addSbtPlugin("com.typesafe.sbt" % "sbt-play-soap" % "1.1.4")
+                    </code>
+                </pre>
+
+                <p>
+                    Add the following lines to <b>/build.sbt</b>
+                </p>
+                <pre>
+                    <code>
+// zarinpal webservice
+WsdlKeys.packageName := Some("com.zarinpal")
+WsdlKeys.wsdlUrls in Compile += url("https://www.zarinpal.com/pg/
+                        services/WebGate/wsdl")
+                    </code>
+                </pre>
+
+                <p>
+                    Config your merchantId in <b>/conf/application.conf</b>
+                </p>
+                <pre>
+                    <code>
+zarinpal {
+    merchantId = "6245e35a-fd55-11e8-8eb2-f2801f1b9fd1"
+    startpay.url = "https://www.zarinpal.com/pg/StartPay"
+}
+                    </code>
+                </pre>
+            </article>
+
+            <aside>
+                <h3>Browse</h3>
+                <ul>
+                    <li><a href="https://github.com/ZarinPal-Lab/Documentation-PaymentGateway/archive/master.zip" target="_blank">
+                        Zarinpal Doc</a></li>
+                    <li><a href="https://playframework.github.io/play-soap/Home.html" target="_blank">
+                        Play Soap Doc</a></li>
+                </ul>
+            </aside>
+        </div>
+    }
