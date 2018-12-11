@@ -35,3 +35,7 @@ zarinpal {
 ```
 
 Use "sbt run" to run the project and open "http://localhost:9000/"
+
+[Zarinpal Documentation](https://github.com/ZarinPal-Lab/Documentation-PaymentGateway/archive/master.zip)
+
+[Play Soap Documentation](https://playframework.github.io/play-soap/Home.html)
