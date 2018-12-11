@@ -1,4 +1,4 @@
-#Zarinpal payment for Playframework/Scala
+# Zarinpal payment for Playframework/Scala
 
 
 Add the following lines to /project/plugins.sbt
