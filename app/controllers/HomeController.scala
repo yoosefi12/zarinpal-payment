@@ -58,7 +58,7 @@ class HomeController @Inject()(cc: ControllerComponents, conf: Configuration, pa
 
   }
 
-  def paymentRequest(merchantId: String, invoiceId: String, invoice: Invoice, host: String): Future[(Int, String)] = {
+  private def paymentRequest(merchantId: String, invoiceId: String, invoice: Invoice, host: String): Future[(Int, String)] = {
     val paymentStatus: javax.xml.ws.Holder[java.lang.Integer] = new javax.xml.ws.Holder[java.lang.Integer]()
     val authority: javax.xml.ws.Holder[java.lang.String] = new javax.xml.ws.Holder[java.lang.String]()
     val callback = s"http://$host${routes.HomeController.callback(invoiceId).url}"
@@ -67,7 +67,7 @@ class HomeController @Inject()(cc: ControllerComponents, conf: Configuration, pa
     }
   }
 
-  def paymentVerification(merchantId: String, invoiceId: String, invoice: Invoice, authority: String): Future[(Int, Long)] = {
+  private def paymentVerification(merchantId: String, invoiceId: String, invoice: Invoice, authority: String): Future[(Int, Long)] = {
     val verificationStatus: javax.xml.ws.Holder[java.lang.Integer] = new javax.xml.ws.Holder[java.lang.Integer]()
     val ref: javax.xml.ws.Holder[java.lang.Long] = new javax.xml.ws.Holder[java.lang.Long]()
     paymentGatewayService.paymentGatewayImplementationServicePort.paymentVerification(merchantId, authority, invoice.amount, verificationStatus, ref).map { x =>
